@@ -1,0 +1,40 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# urbanindex
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+calculating the [538 urbanization index](https://fivethirtyeight.com/features/how-urban-or-rural-is-your-state-and-what-does-that-mean-for-the-2020-election/) for each census tract
+
+## inspiration
+
+https://twitter.com/NateSilver538/status/1200498385125433344
+
+## Installation
+
+You can install urbanindex from [github](https://github.com/edavidaja/urbanindex) with:
+
+```{r, eval=FALSE} 
+remotes::install.packages("edavidaja/urbanindex")
+```
+
+## Example
+
+```{r example}
+library(urbanindex)
+head(pop_within_5_mi)
+```

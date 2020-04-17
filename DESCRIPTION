@@ -1,0 +1,16 @@
+Package: urbanindex
+Title: Tract-Level Data for the 538 Urban Index
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "David",
+           family = "Aja",
+           role = c("aut", "cre"),
+           email = "first.last@example.com")
+Description: Tract-level data for the 538 urban index
+License: CC0
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
+Depends: 
+    R (>= 2.10)
