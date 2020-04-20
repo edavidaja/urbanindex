@@ -51,13 +51,6 @@
       "Repository": "CRAN",
       "Hash": "e652f23d8b1807cc975c51410d05b72f"
     },
-    "areal": {
-      "Package": "areal",
-      "Version": "0.1.5",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "1cabe0d2da5ea57f552294adc7afd253"
-    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.1",
@@ -211,13 +204,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "2aefa994e8df5da17dc09afd80f924d5"
-    },
-    "here": {
-      "Package": "here",
-      "Version": "0.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "2c0406b8e0a4c3516ab37be62da74e3c"
     },
     "highr": {
       "Package": "highr",
