@@ -7,7 +7,7 @@
 
 <!-- badges: end -->
 
-calculating the [538 urbanization
+incorrectly calculating the [538 urbanization
 index](https://fivethirtyeight.com/features/how-urban-or-rural-is-your-state-and-what-does-that-mean-for-the-2020-election/)
 for each census tract
 
@@ -21,8 +21,11 @@ You can install urbanindex from
 [github](https://github.com/edavidaja/urbanindex) with:
 
 ``` r
-remotes::install.packages("edavidaja/urbanindex")
+install.packages("edavidaja/urbanindex")
 ```
+
+if that doesn’t work–have you met
+[`{renv}`](https://rstudio.github.io/renv/articles/renv.html)?
 
 ## Example
 
@@ -37,3 +40,10 @@ head(pop_within_5_mi)
 #> 5 01001020500        4294.309
 #> 6 01001020600        3183.779
 ```
+
+## garden of forking paths
+
+a differently wrong approach uses `st_is_within_distance` to identify
+tract centroids within five miles of each other, available on the
+[centroid-self-join](https://github.com/edavidaja/urbanindex/tree/centroid-self-join)
+branch

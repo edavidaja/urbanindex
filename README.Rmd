@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-calculating the [538 urbanization index](https://fivethirtyeight.com/features/how-urban-or-rural-is-your-state-and-what-does-that-mean-for-the-2020-election/) for each census tract
+incorrectly calculating the [538 urbanization index](https://fivethirtyeight.com/features/how-urban-or-rural-is-your-state-and-what-does-that-mean-for-the-2020-election/) for each census tract
 
 ## inspiration
 
@@ -29,8 +29,10 @@ https://twitter.com/NateSilver538/status/1200498385125433344
 You can install urbanindex from [github](https://github.com/edavidaja/urbanindex) with:
 
 ```{r, eval=FALSE} 
-remotes::install.packages("edavidaja/urbanindex")
+install.packages("edavidaja/urbanindex")
 ```
+
+if that doesn't work--have you met [`{renv}`](https://rstudio.github.io/renv/articles/renv.html)?
 
 ## Example
 
@@ -38,3 +40,7 @@ remotes::install.packages("edavidaja/urbanindex")
 library(urbanindex)
 head(pop_within_5_mi)
 ```
+
+## garden of forking paths
+
+a differently wrong approach uses `st_is_within_distance` to identify tract centroids within five miles of each other, available on the [centroid-self-join](https://github.com/edavidaja/urbanindex/tree/centroid-self-join) branch
