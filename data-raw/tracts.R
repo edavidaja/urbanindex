@@ -43,13 +43,16 @@ pop_within_5_mi <- intersection %>%
   st_drop_geometry() %>% 
   group_by(GEOID) %>% 
   summarise(pop_within_five = sum(population, na.rm = TRUE)) %>% 
-  ungroup()
+  ungroup() %>% 
+  inner_join(
+    st_drop_geometry(select(tract_population, GEOID, population = estimate))
+    )
 
 inner_join(pop_within_5_mi, states) %>% 
   filter(pop_within_five != 0) %>% 
   mutate(log_pop_within_five = log(pop_within_five)) %>% 
   group_by(state) %>% 
-  summarise(avg_pop_within_five = mean(log_pop_within_five, na.rm = TRUE)) %>% 
-  arrange(desc(avg_pop_within_five)) 
+  summarise(avg_log_pop_within_five = mean(log_pop_within_five, na.rm = TRUE)) %>% 
+  arrange(desc(avg_log_pop_within_five))
 
 usethis::use_data(pop_within_5_mi, overwrite = TRUE)
