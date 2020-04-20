@@ -5,7 +5,7 @@ Authors@R:
     person(given = "David",
            family = "Aja",
            role = c("aut", "cre"),
-           email = "first.last@example.com")
+           email = "edavidaja@gmail.com")
 Description: Tract-level data for the 538 urban index
 License: CC0
 Encoding: UTF-8
