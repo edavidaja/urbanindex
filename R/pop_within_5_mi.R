@@ -7,7 +7,7 @@
 #' \describe{
 #'   \item{GEOID}{an 11-character identifier for the tract}
 #'   \item{pop_within_5_mi}{the population within five miles of the tract}
-#'   \item{pop}{population of the tract}
+#'   \item{population}{population of the tract}
 #' }
 #' @source \url{https://www.census.gov/programs-surveys/acs/news/data-releases.2018.html}
 "pop_within_5_mi"

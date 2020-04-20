@@ -9,7 +9,7 @@ a data frame with 74001 rows and three columns
 \describe{
 \item{GEOID}{an 11-character identifier for the tract}
 \item{pop_within_5_mi}{the population within five miles of the tract}
-\item{pop}{population of the tract}
+\item{population}{population of the tract}
 }
 }
 \source{

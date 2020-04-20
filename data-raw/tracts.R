@@ -2,6 +2,7 @@ library(tidycensus)
 library(sf)
 library(dplyr)
 library(stringr)
+library(data.table)
 options(tigris_use_cache = TRUE)
 
 five_miles_in_meters <- 8046.72
@@ -29,27 +30,45 @@ tract_population <-
     five_mile_buffer = st_buffer(tract_centroid, five_miles_in_meters),
   )
 
-tract_pop <- select(tract_population, population = estimate)
+tract_pop <- select(tract_population, GEOID, population = estimate) %>% 
+  st_drop_geometry()
 
 five_mi_buffers <- select(tract_population, GEOID, five_mile_buffer) %>%
   st_drop_geometry() %>%
   st_as_sf()
 
+tract_centroids <- select(tract_population, GEOID, tract_centroid) %>% 
+  st_drop_geometry() %>% 
+  st_as_sf()
+
 intersection <- st_join(
-  tract_pop, five_mi_buffers
+  tract_centroids, tract_centroids, st_is_within_distance, dist = five_miles_in_meters
 )
 
-pop_within_5_mi <- intersection %>% 
-  st_drop_geometry() %>% 
-  group_by(GEOID) %>% 
-  summarise(pop_within_five = sum(population, na.rm = TRUE)) %>% 
-  ungroup()
+setDT(intersection)
+setDT(tract_pop)
 
-inner_join(pop_within_5_mi, states) %>% 
+pop_within_5_mi <- 
+intersection[
+    tract_pop, 
+    on = .(GEOID.x = GEOID)
+  ][
+   , 
+   .(pop_within_five = sum(population, na.rm = TRUE)),
+   by = GEOID.x
+   ][
+     tract_pop,
+     on = .(GEOID.x = GEOID)
+   ]
+
+names(pop_within_5_mi)[1] <- "GEOID"
+
+inner_join(pop_within_5_mi, states, by = c("GEOID")) %>% 
   filter(pop_within_five != 0) %>% 
   mutate(log_pop_within_five = log(pop_within_five)) %>% 
   group_by(state) %>% 
-  summarise(avg_pop_within_five = mean(log_pop_within_five, na.rm = TRUE)) %>% 
-  arrange(desc(avg_pop_within_five)) 
+  summarise(avg_log_pop_within_five = mean(log_pop_within_five, na.rm = TRUE)) %>% 
+  arrange(desc(avg_log_pop_within_five))
+
 
 usethis::use_data(pop_within_5_mi, overwrite = TRUE)
